@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: carpark
+  labels:
+    app: carpark
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: carpark
+  template:
+    metadata:
+      labels:
+        app: carpark
+
+    spec:
+      containers:
+        - name: carpark
+          image: wangbeyond/carpark:latest
+          ports:
+            - containerPort: 8080
+              name: http
+              protocol: TCP
+          env:
+            - name: MYSQL_USER
+              value: "root"
+            - name: MYSQL_PASSWORD
+              value: "password"
+            - name: MYSQL_DB
+              value: "carpark"
+            - name: MYSQL_HOST
+              value: "tcp(mysql-svc:3306)"

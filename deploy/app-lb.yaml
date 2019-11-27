@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: carpark-svc
+spec:
+  selector:
+    app: carpark
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      nodePort: 30000
