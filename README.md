@@ -1,8 +1,11 @@
 # Instruction
 
+## Init project
+``` bash
 kubectl apply -f deploy
 kubectl port-forward $(kubectl get po -l app=mysql -o Name) 7000:3306
 mysql -h 127.0.0.1 -uroot -ppassword -P 7000 < ./data/db-init.sql
+```
 
 ## To update availability
 eg: 
